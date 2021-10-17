@@ -9,5 +9,5 @@ import kotlin.reflect.KProperty
 abstract class EasyPrefs(
     val prefs: SharedPreferences,
 ) {
-    protected fun getKeyFor(property: KProperty<*>): String = getKeyFor(this, property)
+    fun getKeyFor(property: KProperty<*>): String = getKeyFor(this, property)
 }
