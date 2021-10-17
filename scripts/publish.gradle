@@ -62,6 +62,12 @@ afterEvaluate {
     }
 }
 
+ext["signing.keyId"] = rootProject.ext["KEY_ID"]
+ext["signing.password"] = rootProject.ext["PASSWORD"]
+ext["signing.secretKeyRingFile"] = rootProject.ext["KEY_FILE"]
+ext["PUBLISH_DEVELOPER_NAME"] = rootProject.ext["PUBLISH_DEVELOPER_NAME"]
+ext["PUBLISH_DEVELOPER_EMAIL"] = rootProject.ext["PUBLISH_DEVELOPER_EMAIL"]
+
 signing {
     sign publishing.publications
 }
