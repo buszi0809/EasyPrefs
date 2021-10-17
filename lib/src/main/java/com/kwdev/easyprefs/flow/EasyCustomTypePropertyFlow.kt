@@ -1,6 +1,6 @@
 package com.kwdev.easyprefs.flow
 
-import com.kwdev.easyprefs.EasyPrefs
+import com.kwdev.easyprefs.EasyPrefsFlow
 import com.kwdev.easyprefs.TypeAdapter
 import com.kwdev.easyprefs.getKeyFor
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +13,7 @@ internal class EasyCustomTypePropertyFlow<T>(
     private val typeAdapter: TypeAdapter<T>,
 ) : EasyPropertyFlow<T> {
 
-    override fun getValue(thisRef: EasyPrefs, property: KProperty<*>): Flow<T> =
+    override fun getValue(thisRef: EasyPrefsFlow, property: KProperty<*>): Flow<T> =
         thisRef.propertyFlow(getKeyFor(thisRef, key))
             .map {
                 thisRef.prefs.getString(it, null)

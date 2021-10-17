@@ -1,6 +1,6 @@
 package com.kwdev.easyprefs.flow
 
-import com.kwdev.easyprefs.EasyPrefs
+import com.kwdev.easyprefs.EasyPrefsFlow
 import com.kwdev.easyprefs.getKeyFor
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -12,7 +12,7 @@ internal class EasyLongPropertyFlow(
     private val default: Long,
 ) : EasyPropertyFlow<Long> {
 
-    override fun getValue(thisRef: EasyPrefs, property: KProperty<*>): Flow<Long> =
+    override fun getValue(thisRef: EasyPrefsFlow, property: KProperty<*>): Flow<Long> =
         thisRef.propertyFlow(getKeyFor(thisRef, key))
             .map {
                 thisRef.prefs.getLong(it, default)
