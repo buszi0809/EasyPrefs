@@ -1,0 +1,11 @@
+nexusPublishing {
+    repositories {
+        sonatype {
+            stagingProfileId = SONATYPE_STAGING_PROFILE_ID
+            username = OSSRH_USERNAME
+            password = OSSRH_PASSWORD
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
+    }
+}

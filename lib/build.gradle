@@ -3,6 +3,20 @@ plugins {
     id 'kotlin-android'
 }
 
+ext {
+    PUBLISH_GROUP_ID = 'io.github.buszi0809'
+    PUBLISH_VERSION = '0.1.0'
+    PUBLISH_ARTIFACT_ID = 'easyprefs'
+    PUBLISH_DESCRIPTION = 'Adapter library for Android SharedPreferences'
+    PUBLISH_URL = 'https://github.com/buszi0809/EasyPrefs'
+    PUBLISH_LICENSE_NAME = 'Apache License 2.0'
+    PUBLISH_LICENSE_URL = 'https://github.com/buszi0809/EasyPrefs/blob/master/LICENSE.txt'
+    PUBLISH_DEVELOPER_ID = 'buszi0809'
+    PUBLISH_SCM_CONNECTION = 'scm:git:github.com/buszi0809/EasyPrefs.git'
+    PUBLISH_SCM_DEVELOPER_CONNECTION = 'scm:git:ssh://github.com/buszi0809/EasyPrefs.git'
+    PUBLISH_SCM_URL = 'https://github.com/buszi0809/EasyPrefs/tree/master'
+}
+
 android {
     compileSdk 30
 
@@ -34,3 +48,6 @@ dependencies {
     implementation "androidx.preference:preference-ktx:1.1.1"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt'
 }
+
+apply from: "${rootProject.projectDir}/scripts/secrets.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish.gradle"
