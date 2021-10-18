@@ -84,7 +84,7 @@ The library is avaliable on Maven repository, just add `mavenCentral()` to your 
 ```
 implementation "io.github.buszi0809:easyprefs:1.0.0"
 ```
-Then implement `EasyPrefs` or `EasyPrefsFlow` in object that handles your SharedPreferences and you're easy to go. 😄
+Then extend `EasyPrefs` or `EasyPrefsFlow` in object that handles your SharedPreferences and you're easy to go. 😄
 
 ## Feedback
 
