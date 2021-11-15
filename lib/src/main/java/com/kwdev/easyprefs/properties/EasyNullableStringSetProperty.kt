@@ -1,10 +1,13 @@
 package com.kwdev.easyprefs.properties
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.edit
 import com.kwdev.easyprefs.EasyPrefs
 import com.kwdev.easyprefs.getKeyFor
 import kotlin.reflect.KProperty
 
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 internal class EasyNullableStringSetProperty(
     private val commit: Boolean,
     private val default: Set<String>?,

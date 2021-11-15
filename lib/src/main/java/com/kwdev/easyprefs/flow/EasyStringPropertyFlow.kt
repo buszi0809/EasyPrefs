@@ -6,15 +6,16 @@ import kotlinx.coroutines.flow.*
 import kotlin.reflect.KProperty
 
 internal class EasyStringPropertyFlow(
-    private val key: KProperty<String?>,
-) : EasyPropertyFlow<String?> {
+    private val key: KProperty<String>,
+    private val default: String,
+) : EasyPropertyFlow<String> {
 
-    override fun getValue(thisRef: EasyPrefsFlow, property: KProperty<*>): Flow<String?> =
+    override fun getValue(thisRef: EasyPrefsFlow, property: KProperty<*>): Flow<String> =
         thisRef.propertyFlow(getKeyFor(thisRef, key))
             .map {
-                thisRef.prefs.getString(it, null)
+                thisRef.prefs.getString(it, null) ?: default
             }
             .onStart {
-                emit(thisRef.prefs.getString(getKeyFor(thisRef, key), null))
+                emit(thisRef.prefs.getString(getKeyFor(thisRef, key), null) ?: default)
             }
 }

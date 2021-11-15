@@ -11,15 +11,18 @@ import kotlin.reflect.KProperty
 internal class EasyCustomTypePropertyFlow<T>(
     private val key: KProperty<T>,
     private val typeAdapter: TypeAdapter<T>,
+    private val default: T?,
 ) : EasyPropertyFlow<T> {
+
+    private val stringDefault by lazy { default?.let(typeAdapter::toString) }
 
     override fun getValue(thisRef: EasyPrefsFlow, property: KProperty<*>): Flow<T> =
         thisRef.propertyFlow(getKeyFor(thisRef, key))
             .map {
-                thisRef.prefs.getString(it, null)
+                thisRef.prefs.getString(it, stringDefault)
             }
             .onStart {
-                emit(thisRef.prefs.getString(getKeyFor(thisRef, key), null))
+                emit(thisRef.prefs.getString(getKeyFor(thisRef, key), stringDefault))
             }
             .map(typeAdapter::fromString)
 }

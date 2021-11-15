@@ -6,12 +6,17 @@ import com.kwdev.easyprefs.TypeAdapter
 import com.kwdev.easyprefs.getKeyFor
 import kotlin.reflect.KProperty
 
-internal class EasyCustomTypeProperty<T : Any?>(
+internal class EasyCustomTypeProperty<T>(
     private val commit: Boolean,
     private val adapter: TypeAdapter<T>,
+    private val default: T?,
 ) : EasyPrefsProperty<T> {
+
+    private val stringDefault by lazy { default?.let(adapter::toString) }
+
     override fun getValue(thisRef: EasyPrefs, property: KProperty<*>): T =
-        thisRef.prefs.getString(getKeyFor(thisRef, property), null).let(adapter::fromString)
+        thisRef.prefs.getString(getKeyFor(thisRef, property), stringDefault)
+            .let(adapter::fromString)
 
     override fun setValue(thisRef: EasyPrefs, property: KProperty<*>, value: T) {
         thisRef.prefs.edit(commit) {

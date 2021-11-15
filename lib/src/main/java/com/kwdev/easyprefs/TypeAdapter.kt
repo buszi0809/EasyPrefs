@@ -2,7 +2,7 @@ package com.kwdev.easyprefs
 
 /**
  * Type adapter interface, to be used to convert your object of type [T] to nullable string value and backwards.
- * This interface is useful if you want to use [custom] or [customFlow] property.
+ * This interface is useful if you want to use [custom] property.
  */
 interface TypeAdapter<T> {
     /**
