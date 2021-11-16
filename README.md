@@ -95,7 +95,7 @@ class MyPreferences(private val preferences: SharedPreferences) : EasyPrefsRx(pr
     
     var myString by string(commit = true, default = MY_DEFAULT_VALUE)
     
-    val myStringObservable by stringObservable(ke= = ::myString, default = My_DEFAULT_VALUE)
+    val myStringObservable by stringObservable(key = ::myString, default = My_DEFAULT_VALUE)
     
     companion object {
         const val MY_DEFAULT_VALUE = "default"
