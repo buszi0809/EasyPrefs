@@ -41,7 +41,7 @@ class MyPreferences(private val preferences: SharedPreferences) : EasyPrefsFlow(
     
     var myString by string(commit = true, default = MY_DEFAULT_VALUE)
     // key is the property you want to observe
-    val myStringFlow by stringFlow(key = ::myString)
+    val myStringFlow by stringFlow(key = ::myString, default = MY_DEFAULT_VALUE)
     ...
 }
 ```
@@ -82,9 +82,26 @@ So the library just generates the key for example like this: `"com.example.app.d
 
 The library is avaliable on Maven repository, just add `mavenCentral()` to your project and this dependency:
 ```
-implementation "io.github.buszi0809:easyprefs:1.0.0"
+implementation "io.github.buszi0809:easyprefs:1.1.0"
 ```
 Then extend `EasyPrefs` or `EasyPrefsFlow` in object that handles your SharedPreferences and you're easy to go. 😄
+
+## New
+
+Support for RxJava3! Extend `EasyPrefsRx` and use Observable delegates:
+
+```Kotlin
+class MyPreferences(private val preferences: SharedPreferences) : EasyPrefsRx(preferences) {
+    
+    var myString by string(commit = true, default = MY_DEFAULT_VALUE)
+    
+    val myStringObservable by stringObservable(ke= = ::myString, default = My_DEFAULT_VALUE)
+    
+    companion object {
+        const val MY_DEFAULT_VALUE = "default"
+    }
+}
+```
 
 ## Feedback
 
